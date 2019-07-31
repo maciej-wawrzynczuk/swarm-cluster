@@ -25,7 +25,6 @@ data "aws_vpc" "my_default_vpc" {
   default = true
 }
 
-#TODO: restrict cidr
 resource "aws_security_group" "swarm-node" {
   name = "swarm-node"
   description = "Docker swarm communication"
