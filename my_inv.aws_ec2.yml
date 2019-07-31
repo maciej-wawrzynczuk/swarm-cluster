@@ -5,3 +5,5 @@ regions:
 keyed_groups:
   - key: tags.app
     separator: ''
+  - key: tags.role
+    separator: ''
