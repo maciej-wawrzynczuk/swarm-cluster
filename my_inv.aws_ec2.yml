@@ -6,4 +6,6 @@ filters:
   tag:app: swarm-cluster
 keyed_groups:
   - key: tags.role
+    separator: ''
   - key: tags.app
+    separator: ''
