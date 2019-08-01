@@ -32,3 +32,15 @@
     - name: Update apt and install docker-ce
       apt: update_cache=yes name=docker-ce state=latest
 
+- hosts: swarm_cluster:&manager
+  become: yes
+  tasks:
+    - name: Check if manager already configured
+      shell: >
+        docker info | perl -ne 'print "$1" if /Swarm: (\w+)/'
+      register: swarm_status
+
+    - name: Init cluster
+      debug:
+        msg: im here
+        when: "'active' not in swarm_status.stdout_lines"
