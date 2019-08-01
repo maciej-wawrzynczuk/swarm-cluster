@@ -1,4 +1,5 @@
 * Build docker swarm cluster on AWS with terraform and Ansible
 ** Todos:
-   - [ ] init cluster
+   - [ ] move init cluster to role
+   - [X] init cluster
    - [ ] pin docker version
