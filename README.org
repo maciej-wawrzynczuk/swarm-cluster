@@ -1,6 +1,7 @@
 * Build docker swarm cluster on AWS with terraform and Ansible
 ** Todos:
+   - [ ] deploy something
+   - [ ] create separate VPC/network
    - [X] try to use docker_swarm module
-   - [ ] move init cluster to role
    - [X] init cluster
    - [ ] pin docker version

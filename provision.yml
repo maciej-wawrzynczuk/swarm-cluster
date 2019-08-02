@@ -6,8 +6,24 @@
 - hosts: manager[0]
   become: yes
   tasks:
-    - docker_swarm:
+    - name: Swarm cluster and first manager
+      docker_swarm:
         state: present
       register: swarm_info
+
     - debug:
-        msg: "{{ swarm_info.swarm_facts.JoinTokens.Worker }}"
+        msg: >-
+          addr: {{ ansible_default_ipv4.address }}
+          worker token: {{ swarm_info.swarm_facts.JoinTokens.Worker }}
+        verbosity: 1
+
+- hosts: node
+  become: yes
+  tasks:
+    - name: Swarm node
+      docker_swarm:
+        state: join
+        remote_addrs: [ "{{ hostvars[item].ansible_default_ipv4.address }}:2377" ]
+        join_token: "{{ hostvars[item].swarm_info.swarm_facts.JoinTokens.Worker }}"
+        advertise_addr: "{{ ansible_default_ipv4.address }}"
+      loop: [ "{{ groups['manager'][0] }}" ]
