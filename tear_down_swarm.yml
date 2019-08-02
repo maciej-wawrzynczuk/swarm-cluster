@@ -1,0 +1,6 @@
+- hosts: swarm_cluster
+  become: yes
+  tasks:
+    - docker_swarm:
+        state: absent
+        force: yes
