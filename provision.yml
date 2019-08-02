@@ -1,16 +1,13 @@
-- hosts: swarm-cluster
-  become: yes
-  roles:
-    - docker
+#- hosts: swarm_cluster
+#  become: yes
+#  roles:
+#    - docker
 
-- hosts: manager
-  become: yes
-  roles:
-    - swarm-master
-
-- hosts: node
+- hosts: manager[0]
   become: yes
   tasks:
+    - docker_swarm:
+        state: present
+      register: swarm_info
     - debug:
-        msg: "{{ hostvars[item]['worker_token'] }}"
-      with_items: "{{ groups['manager'] }}"
+        msg: "{{ swarm_info.swarm_facts.JoinTokens.Worker }}"

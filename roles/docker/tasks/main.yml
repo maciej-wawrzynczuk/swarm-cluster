@@ -18,6 +18,10 @@
     - 'virtualenv'
     - 'python3-setuptools'
 
+- name: Docker Python API
+  pip:
+    name: docker-py
+
 - name: Add Docker GPG apt Key
   apt_key:
     url: https://download.docker.com/linux/ubuntu/gpg
