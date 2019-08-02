@@ -1,7 +1,7 @@
-#- hosts: swarm_cluster
-#  become: yes
-#  roles:
-#    - docker
+- hosts: swarm_cluster
+  become: yes
+  roles:
+    - docker
 
 - hosts: manager[0]
   become: yes
