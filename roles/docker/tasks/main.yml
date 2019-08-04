@@ -17,6 +17,7 @@
     - 'python3-pip'
     - 'virtualenv'
     - 'python3-setuptools'
+    - 'python3-jsondiff'
 
 - name: Docker Python API
   pip:
